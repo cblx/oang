@@ -1,19 +1,18 @@
 trigger:
-- master
+ - master
 
 steps:
-- script: npm install
-  displayName: npm install
+# - script: npm install
+#   displayName: npm install
 
-- script: npx ng build --prod
-  displayName: ng build
-  workingDirectory: projects/demo
+# - script: npx ng build --prod
+#   displayName: ng build
+#   workingDirectory: projects/demo
 
-- task: AzureFileCopy@3
+- task: AzureCLI@2
   inputs:
-    SourcePath: 'projects/demo/dist'
     azureSubscription: 'Pago pelo Uso - Gui(4a6fb573-2012-4afb-a35a-1f37db594180)'
-    Destination: 'AzureBlob'
-    storage: 'cblxoang'
-    ContainerName: '$web'
+    scriptType: 'batch'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'azcopy'
 
