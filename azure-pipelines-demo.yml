@@ -2,17 +2,18 @@ trigger:
  - master
 
 steps:
-# - script: npm install
-#   displayName: npm install
+- script: npm install
+  displayName: npm install
 
-# - script: npx ng build --prod
-#   displayName: ng build
-#   workingDirectory: projects/demo
+- script: npx ng build --prod
+  displayName: ng build
+  workingDirectory: projects/demo
 
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'Pago pelo Uso - Gui(4a6fb573-2012-4afb-a35a-1f37db594180)'
     scriptType: 'pscore'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az --version'
+    inlineScript: 'az storage blob upload-batch --account-name cblxoang -d $web -s dist'
+    workingDirectory: 'projects/demo'
 
