@@ -1,0 +1,5 @@
+trigger:
+- master
+
+steps:
+- script: npm install
