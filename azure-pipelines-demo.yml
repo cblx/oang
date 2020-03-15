@@ -12,7 +12,7 @@ steps:
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'Pago pelo Uso - Gui(4a6fb573-2012-4afb-a35a-1f37db594180)'
-    scriptType: 'batch'
+    scriptType: 'pscore'
     scriptLocation: 'inlineScript'
     inlineScript: 'az --version'
 
