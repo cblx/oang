@@ -8,3 +8,12 @@ steps:
 - script: npx ng build --prod
   displayName: ng build
   workingDirectory: projects/demo
+
+- task: AzureFileCopy@3
+  inputs:
+    SourcePath: 'projects/demo/dist'
+    azureSubscription: 'Pago pelo Uso - Gui(4a6fb573-2012-4afb-a35a-1f37db594180)'
+    Destination: 'AzureBlob'
+    storage: 'cblxoang'
+    ContainerName: '$web'
+
