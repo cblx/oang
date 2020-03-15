@@ -14,5 +14,5 @@ steps:
     azureSubscription: 'Pago pelo Uso - Gui(4a6fb573-2012-4afb-a35a-1f37db594180)'
     scriptType: 'batch'
     scriptLocation: 'inlineScript'
-    inlineScript: 'azcopy'
+    inlineScript: 'az --version'
 
