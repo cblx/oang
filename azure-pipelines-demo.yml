@@ -14,6 +14,6 @@ steps:
     azureSubscription: 'Pago pelo Uso - Gui(4a6fb573-2012-4afb-a35a-1f37db594180)'
     scriptType: 'pscore'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az storage blob upload-batch --account-name cblxoang -d "$web" -s dist'
+    inlineScript: 'az storage blob upload-batch --account-name cblxoang -d \$web -s dist'
     workingDirectory: 'projects/demo'
 
