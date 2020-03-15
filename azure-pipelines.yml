@@ -3,3 +3,8 @@ trigger:
 
 steps:
 - script: npm install
+  displayName: npm install
+
+- script: ng build --prod
+  displayName: ng build
+  workingDirectory: projects/demo
