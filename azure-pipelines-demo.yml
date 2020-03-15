@@ -2,7 +2,7 @@ trigger:
  - master
 
 variables:
-  web: $web
+  web: '$web'
 
 steps:
 - script: npm install
