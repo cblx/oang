@@ -1,0 +1,28 @@
+name: $(Build.SourceBranch)$(rev:.r)
+trigger:
+  - releases/*
+
+variables:
+    rev: $[counter(variables['Build.SourceBranch'], 0)]
+
+steps:
+- script: npm install
+  displayName: npm install
+
+- script: echo "##vso[build.updatebuildnumber]$(Build.SourceBranchName).$(Rev)"
+  condition: contains(variables['Build.SourceBranch'], '/releases/')
+
+- script: echo "##vso[build.updatebuildnumber]0.0.0-$(Build.SourceBranchName).$(Rev)"
+  condition: not(contains(variables['Build.SourceBranch'], '/releases/'))
+
+- script: npx ng build --project oang --prod
+  displayName: ng build
+
+- job: Deploy
+  dependsOn: SetBuildName
+  steps:
+  - script: npm version $(Build.BuildNumber) --no-git-tag-version
+  - task: Npm@1
+    inputs:
+      command: 'publish'
+      publishEndpoint: 'npmjs.org em nome de guilherme'
