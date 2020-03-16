@@ -4,8 +4,14 @@ steps:
 - script: npm install
   displayName: npm install
 
+- script: npx ng build --project oang --prod
+  displayName: ng build oang
+
+- script: npx ng build --project oang-material --prod
+  displayName: ng build oang-material
+
 - script: npx ng build --project demo --prod
-  displayName: ng build
+  displayName: ng build demo
 
 - task: AzureCLI@2
   inputs:
