@@ -23,6 +23,6 @@ steps:
 
 - task: Npm@1
   inputs:
-    workingDir: dist/oang
     command: 'publish'
-    publishEndpoint: 'npmjs.org em nome de guilherme'
+    workingDir: 'dist/oang'
+    publishEndpoint: 'cblx npm'
