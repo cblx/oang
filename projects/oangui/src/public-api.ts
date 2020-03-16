@@ -1,5 +1,5 @@
 /*
- * Public API Surface of oangui
+ * Public API Surface of oang
  */
 
 export * from './lib/oang.module';

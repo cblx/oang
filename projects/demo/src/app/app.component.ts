@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { OangEngine, FormGroupInfo } from 'projects/oangui/src/lib/oang-engine';
-import { ExtendedSchemaObject } from 'projects/oangui/src/lib/extended-schema-object';
+import { OangEngine, FormGroupInfo } from 'projects/oang/src/lib/oang-engine';
+import { ExtendedSchemaObject } from 'projects/oang/src/lib/extended-schema-object';
 
 const schemaExample: ExtendedSchemaObject = {
   "required": [

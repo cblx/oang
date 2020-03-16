@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { OangModule } from 'projects/oangui/src/public-api';
+import { OangModule } from 'projects/oang/src/public-api';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({

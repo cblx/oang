@@ -1,7 +1,7 @@
 {
-  "name": "@cblx.br/oangui",
+  "name": "@cblx.br/oang",
   "version": "0.0.1",
-  "repository": "https://github.com/cblx/oangui.git",
+  "repository": "https://github.com/cblx/oang.git",
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^9.0.6",
