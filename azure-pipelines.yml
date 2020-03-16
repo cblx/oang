@@ -18,11 +18,11 @@ steps:
 - script: npx ng build --project oang --prod
   displayName: ng build
 
-- job: Deploy
-  dependsOn: SetBuildName
-  steps:
-  - script: npm version $(Build.BuildNumber) --no-git-tag-version
-  - task: Npm@1
-    inputs:
-      command: 'publish'
-      publishEndpoint: 'npmjs.org em nome de guilherme'
+- script: npm version $(Build.BuildNumber) --no-git-tag-version
+  workingDirectory: dist/oang
+
+- task: Npm@1
+  inputs:
+    workingDir: dist/oang
+    command: 'publish'
+    publishEndpoint: 'npmjs.org em nome de guilherme'
