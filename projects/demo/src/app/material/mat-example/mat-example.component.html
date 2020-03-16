@@ -1,0 +1,7 @@
+Material
+
+<div *ngIf="formGroupInfo">
+    <div class="field" *ngFor="let kvp of formGroupInfo?.controlInfos | keyvalue">
+        <oang-field [controlInfo]="kvp.value"></oang-field>
+    </div>
+</div>

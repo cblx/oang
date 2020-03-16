@@ -14,9 +14,15 @@
         <button type="submit">Send</button>
         <h1>{{formGroupInfo.schema.title}}</h1>
         <h3>{{formGroupInfo.schema.description}}</h3>
+        <hr>
+        Pure
+        <!-- PURE -->
         <div class="field" *ngFor="let kvp of formGroupInfo.controlInfos | keyvalue">
           <oang-field [controlInfo]="kvp.value"></oang-field>
         </div>
+<hr>
+        <!-- MATERIAL -->
+        <app-mat-example [schema]="currentSchema"></app-mat-example>
       </form>
     </div>
   </div>

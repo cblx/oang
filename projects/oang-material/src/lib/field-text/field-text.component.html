@@ -1,0 +1,9 @@
+<mat-form-field>
+    <mat-label>{{field.label}}</mat-label>
+    <input matInput [type]="type" 
+        [name]="field.controlInfo.name" 
+        autocomplete="off"
+        [placeholder]="field.prompt" 
+        [formControl]="field.controlInfo.control" />
+        <mat-error *ngIf="field.controlInfo.control.invalid">{{field.errorMessages[0]}}</mat-error>
+</mat-form-field>

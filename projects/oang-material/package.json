@@ -1,0 +1,12 @@
+{
+  "name": "oang-material",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^9.0.6",
+    "@angular/core": "^9.0.6",
+    "@angular/cdk": "^9.1.2",
+    "@angular/material": "^9.1.2",
+    "@cblx.br/oang": "0.0.0-master.5",
+    "tslib": "^1.10.0"
+  }
+}

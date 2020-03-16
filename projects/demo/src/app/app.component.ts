@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { OangEngine, FormGroupInfo } from 'projects/oang/src/lib/oang-engine';
 import { ExtendedSchemaObject } from 'projects/oang/src/lib/extended-schema-object';
+import { MatExampleComponent } from './material/mat-example/mat-example.component';
 
 const schemaExample: ExtendedSchemaObject = {
   "required": [
@@ -71,15 +72,25 @@ const schemaExample: ExtendedSchemaObject = {
 })
 export class AppComponent {
   title = 'demo';
+  currentSchema;
   schemaControl = this.formBuilder.control('');
   formGroupInfo: FormGroupInfo;
   err;
+
+  @ViewChild(MatExampleComponent) matExample: MatExampleComponent;
+
   constructor(private formBuilder: FormBuilder, private oangEngine: OangEngine) {
+ 
+  }
+
+  ngOnInit(){
     this.schemaControl.valueChanges.subscribe(schema => {
       try {
-        this.formGroupInfo = null;
-        this.formGroupInfo = oangEngine.createForm(JSON.parse(schema));
+        const schemaObj = JSON.parse(schema);
         localStorage.setItem('schema', schema);
+        this.formGroupInfo = null;
+        this.formGroupInfo = this.oangEngine.createForm(schemaObj);
+        this.currentSchema = schemaObj;
       } catch (err) {
         this.err = err;
       }

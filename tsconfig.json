@@ -16,9 +16,13 @@
       "dom"
     ],
     "paths": {
-      "oangui": [
-        "dist/oangui/oangui",
-        "dist/oangui"
+      "@cblx.br/oang": [
+        "dist/oang/oang",
+        "dist/oang"
+      ],
+      "@cblx.br/oang-material": [
+        "dist/oang-material/oang-material",
+        "dist/oang-material"
       ]
     }
   },

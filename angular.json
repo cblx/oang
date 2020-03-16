@@ -68,6 +68,7 @@
               "projects/demo/src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
               "projects/demo/src/styles.scss"
             ],
             "scripts": []
@@ -132,6 +133,7 @@
               "projects/demo/src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
               "projects/demo/src/styles.scss"
             ],
             "scripts": []
@@ -163,7 +165,48 @@
           }
         }
       }
-    }},
+    },
+    "oang-material": {
+      "projectType": "library",
+      "root": "projects/oang-material",
+      "sourceRoot": "projects/oang-material/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/oang-material/tsconfig.lib.json",
+            "project": "projects/oang-material/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/oang-material/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/oang-material/src/test.ts",
+            "tsConfig": "projects/oang-material/tsconfig.spec.json",
+            "karmaConfig": "projects/oang-material/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/oang-material/tsconfig.lib.json",
+              "projects/oang-material/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
   "cli": {
     "analytics": "3c14d15f-f7a5-4fbd-b12f-a2e9dfedb566"
   },
