@@ -1,19 +1,24 @@
 <div class="editor">
-  <textarea [formControl]="schemaControl" rows="10"></textarea>
-  <div *ngIf="!formGroupInfo">
-    Could not construct form data<br>
-    <hr>
-    {{err}}
+  <div>
+    <button type="button" (click)="reset()">Reset</button>
+    <textarea [formControl]="schemaControl" rows="10"></textarea>
   </div>
-  <div  *ngIf="formGroupInfo">
-    <form (ngSubmit)="submit()" [formGroup]="formGroupInfo.control">
-      <button type="submit">Send</button>
-      <h1>{{formGroupInfo.schema.title}}</h1>
-      <h3>{{formGroupInfo.schema.description}}</h3>
-      <div class="field" *ngFor="let kvp of formGroupInfo.controlInfos | keyvalue">
-        <oang-field [controlInfo]="kvp.value"></oang-field>
-      </div>
-    </form>
+  <div class="components">
+    <div *ngIf="!formGroupInfo">
+      Could not construct form data<br>
+      <hr>
+      {{err}}
+    </div>
+    <div *ngIf="formGroupInfo">
+      <form (ngSubmit)="submit()" [formGroup]="formGroupInfo.control">
+        <button type="submit">Send</button>
+        <h1>{{formGroupInfo.schema.title}}</h1>
+        <h3>{{formGroupInfo.schema.description}}</h3>
+        <div class="field" *ngFor="let kvp of formGroupInfo.controlInfos | keyvalue">
+          <oang-field [controlInfo]="kvp.value"></oang-field>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 <router-outlet></router-outlet>
