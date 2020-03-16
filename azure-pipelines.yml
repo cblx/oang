@@ -23,6 +23,7 @@ steps:
 
 - task: Npm@1
   inputs:
-    command: 'publish'
+    command: 'custom'
+    customCommand: 'publish --access public'
     workingDir: 'dist/oang'
     publishEndpoint: 'cblx npm'
