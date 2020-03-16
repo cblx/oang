@@ -2,7 +2,6 @@ import { Component, Input, Injector, ChangeDetectorRef } from '@angular/core';
 import { ComponentPortal, PortalInjector } from '@angular/cdk/portal';
 import { OangEngine, ControlInfo } from '../oang-engine';
 import { ExtendedSchemaObject } from '../extended-schema-object';
-import { error } from 'protractor';
 
 @Component({
     selector: 'oang-field',
@@ -23,13 +22,15 @@ export class OangField {
     }
 
     get errorMessages() {
-        let xtSchema: ExtendedSchemaObject = this.controlInfo.schema;
         let errors = this.controlInfo.control.errors;
         let errorMessages = [];
-        let validationMessages = xtSchema["x-validationMessages"];
 
         for (let err in errors) {
-            errorMessages.push((validationMessages && validationMessages[err]) ? validationMessages[err] : err);
+            if(errors[err] === true){
+                errorMessages.push(err);
+            }else{
+                errorMessages.push(errors[err]);
+            }
         }
         return errorMessages;
     }
@@ -92,7 +93,6 @@ export class OangField {
         </label>
         <input 
             [type]="type"
-            [required]="field.controlInfo.schema['x-isRequired']"
             [placeholder]="field.prompt" [formControl]="field.controlInfo.control"/>
         {{field.errorMessages[0]}}
     `

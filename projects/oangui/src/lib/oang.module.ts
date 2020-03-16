@@ -9,6 +9,8 @@ import { EmailValidatorResolver } from './validator-resolvers/email';
 import { IsRequiredValidatorResolver } from './validator-resolvers/is-required';
 import { MaxLengthValidatorResolver } from './validator-resolvers/max-length';
 import { PatternValidatorResolver } from './validator-resolvers/pattern';
+import { MinValidatorResolver } from './validator-resolvers/min';
+import { MaxValidatorResolver } from './validator-resolvers/max';
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import { PatternValidatorResolver } from './validator-resolvers/pattern';
     EmailValidatorResolver,
     IsRequiredValidatorResolver,
     MaxLengthValidatorResolver,
+    MaxValidatorResolver,
+    MinValidatorResolver,
     PatternValidatorResolver,
     OangEngine,
   ]
@@ -35,6 +39,8 @@ export class OangModule {
       EmailValidatorResolver,
       IsRequiredValidatorResolver,
       MaxLengthValidatorResolver,
+      MaxValidatorResolver,
+      MinValidatorResolver,
       PatternValidatorResolver,
     )
 

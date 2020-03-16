@@ -206,4 +206,9 @@ export interface ValidatorResolverContext {
 export interface ValidatorResolver {
     resolve(context: ValidatorResolverContext): ValidatorFn;
 }
+
+// export interface ValidatorResolution{
+//     fn: ValidatorFn, 
+//     message: string
+// }
 ////////////////////////////////////////////////////////////////

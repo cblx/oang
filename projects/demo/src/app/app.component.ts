@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { OangEngine, FormGroupInfo } from 'projects/oangui/src/lib/oang-engine';
+import { ExtendedSchemaObject } from 'projects/oangui/src/lib/extended-schema-object';
 
-const schemaExample = {
+const schemaExample: ExtendedSchemaObject = {
   "required": [
     "name",
     "email"
@@ -17,7 +18,7 @@ const schemaExample = {
       "maxLength": 64,
       "x-validationMessages": {
         "required": "This field is required",
-        "maxlength": "The max length is 64"
+        "maxLength": "The max length is 64"
       }
     },
     "document": {
@@ -50,7 +51,14 @@ const schemaExample = {
       "format": "date-time"
     },
     "score": {
-      "type": "integer"
+      "title": "score",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 999999,
+      "x-validationMessages": {
+        "minimum": "Minimum is 0",
+        "maximum": "Maximum is 999.999"
+      }
     }
   }
 };

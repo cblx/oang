@@ -4,11 +4,12 @@ import { ValidatorResolver, ValidatorResolverContext } from '../oang-engine';
 import { wrapFn } from './helpers';
 
 @Injectable()
-export class PatternValidatorResolver implements ValidatorResolver {
+export class MaxValidatorResolver implements ValidatorResolver {
     constructor() { }
     resolve(context: ValidatorResolverContext): ValidatorFn {
-        if (context.controlInfo.schema.pattern) {
-            return wrapFn(context.controlInfo.schema, Validators.pattern(context.controlInfo.schema.pattern), 'pattern');
+        let maximum = context.controlInfo.schema.maximum;
+        if (maximum || maximum === 0) {
+            return wrapFn(context.controlInfo.schema, Validators.max(maximum), 'maximum');
         }
     }
 }
