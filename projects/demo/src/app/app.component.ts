@@ -77,10 +77,11 @@ export class AppComponent {
       }
     });
     let memory = localStorage.getItem('schema');
-    if (memory === undefined) {
+    if (memory === null || memory === undefined) {
       this.reset();
+    } else {
+      this.schemaControl.setValue(memory);
     }
-    this.schemaControl.setValue(localStorage.getItem('schema'));
   }
 
   submit() {
