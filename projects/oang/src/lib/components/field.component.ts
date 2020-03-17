@@ -16,9 +16,9 @@ export class OangField {
         return xtSchema['x-displayName'] || xtSchema.title || this.controlInfo.name;
     }
 
-    get prompt() {
+    get placeholder() {
         let xtSchema: ExtendedSchemaObject = this.controlInfo.schema;
-        return xtSchema['x-prompt'] || xtSchema.description || this.label;
+        return xtSchema['x-placeholder'] || xtSchema.description || this.label;
     }
 
     get errorMessages() {
@@ -93,7 +93,7 @@ export class OangField {
         </label>
         <input 
             [type]="type"
-            [placeholder]="field.prompt" [formControl]="field.controlInfo.control"/>
+            [placeholder]="field.placeholder" [formControl]="field.controlInfo.control"/>
         {{field.errorMessages[0]}}
     `
 })
