@@ -21,8 +21,24 @@ steps:
 - script: npm version $(Build.BuildNumber) --no-git-tag-version
   workingDirectory: dist/oang
 
+- script: npx ng build --project oang-material --prod
+  displayName: ng build
+
+- script: npm version $(Build.BuildNumber) --no-git-tag-version
+  workingDirectory: dist/oang-material
+
+- powershell: (Get-Content ./package.json) | ForEach-Object { $_ -replace "0.0.0-PLACEHOLDER", $env:BUILD_BUILDNUMBER} | Set-Content ./package.json
+  workingDirectory: dist/oang-material
+  displayName: 'Set peer dep version'
+
 - task: Npm@1
   inputs:
     command: 'publish'
     workingDir: 'dist/oang'
+    publishEndpoint: 'cblx npm'
+
+- task: Npm@1
+  inputs:
+    command: 'publish'
+    workingDir: 'dist/oang-material'
     publishEndpoint: 'cblx npm'
