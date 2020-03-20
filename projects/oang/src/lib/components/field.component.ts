@@ -4,7 +4,7 @@ import { OangEngine, ControlInfo } from '../oang-engine';
 import { ExtendedSchemaObject } from '../extended-schema-object';
 import { InputFieldComponent } from './input-field.component';
 
-let uid = 0;
+//let uid = 0;
 
 @Component({
     selector: 'oang-field',
@@ -13,31 +13,34 @@ let uid = 0;
 export class OangField {
     @Input() controlInfo: ControlInfo<any>;
     componentPortal: ComponentPortal<any>;
-    uid = `oang_field${++uid}`;
-
-    get label() {
-        let xtSchema: ExtendedSchemaObject = this.controlInfo.schema;
-        return xtSchema['x-displayName'] || xtSchema.title || this.controlInfo.name;
+    get ui(){
+        return this.controlInfo.ui;
     }
+    // uid = `oang_field${++uid}`;
 
-    get placeholder() {
-        let xtSchema: ExtendedSchemaObject = this.controlInfo.schema;
-        return xtSchema['x-placeholder'] || xtSchema.description || this.label;
-    }
+    // get label() {
+    //     let xtSchema: ExtendedSchemaObject = this.controlInfo.schema;
+    //     return xtSchema['x-displayName'] || xtSchema.title || this.controlInfo.name;
+    // }
 
-    get errorMessages() {
-        let errors = this.controlInfo.control.errors;
-        let errorMessages = [];
+    // get placeholder() {
+    //     let xtSchema: ExtendedSchemaObject = this.controlInfo.schema;
+    //     return xtSchema['x-placeholder'] || xtSchema.description || this.label;
+    // }
 
-        for (let err in errors) {
-            if(errors[err] === true){
-                errorMessages.push(err);
-            }else{
-                errorMessages.push(errors[err]);
-            }
-        }
-        return errorMessages;
-    }
+    // get errorMessages() {
+    //     let errors = this.controlInfo.control.errors;
+    //     let errorMessages = [];
+
+    //     for (let err in errors) {
+    //         if(errors[err] === true){
+    //             errorMessages.push(err);
+    //         }else{
+    //             errorMessages.push(errors[err]);
+    //         }
+    //     }
+    //     return errorMessages;
+    // }
 
     constructor(
         private injector: Injector,

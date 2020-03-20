@@ -5,15 +5,15 @@ import { FieldComponentResolverContext, FieldComponentResolver, ComponentResolut
 @Component({
     selector: 'oang-input-field',
     template: `
-        <label for="{{field.uid}}">
-            {{field.label}}
+        <label for="{{field.ui.uid}}">
+            {{field.ui.label}}
             <ng-container *ngIf="field.controlInfo.schema['x-isRequired']">*</ng-container>
         </label>
         <input 
-            id="{{field.uid}}"
+            id="{{field.ui.uid}}"
             [type]="type"
-            [placeholder]="field.placeholder" [formControl]="field.controlInfo.control"/>
-        {{field.errorMessages[0]}}
+            [placeholder]="field.ui.placeholder" [formControl]="field.controlInfo.control"/>
+        {{field.ui.errorMessages[0]}}
     `
 })
 export class InputFieldComponent {

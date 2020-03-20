@@ -8,7 +8,7 @@ import { SchemaObject } from 'openapi3-ts';
 @Injectable()
 export class OangEngine {
     controlResolvers: (Type<ControlResolver> | ControlResolverFn)[] = [];
-    defaultValueResolvers: Type<DefaultValueResolver>[] = [];
+    //defaultValueResolvers: Type<DefaultValueResolver>[] = [];
     validatorsResolvers: Type<ValidatorResolver>[] = [];
     fieldComponentResolvers: Type<FieldComponentResolver>[] = [];
     //displayComponentResolvers: Type<DisplayComponentResolver>[] = [];
@@ -76,8 +76,10 @@ export class OangEngine {
             control: formGroup,
             schema: schema,
             name: null,
-            controlInfos: {}
+            controlInfos: {},
+            ui: null
         };
+        formGroupInfo.ui = new UIData(formGroupInfo);
 
         //Create controls
         for (let propName in schema.properties) {
@@ -108,18 +110,23 @@ export class OangEngine {
             let controlInfo: ControlInfo<any> = {
                 control,
                 name: propName,
-                schema: propSchema
+                schema: propSchema,
+                ui: null
             };
+            controlInfo.ui = new UIData(controlInfo);
             formGroupInfo.controlInfos[propName] = controlInfo;
             //console.log(formGroupInfo);
 
-            for (let dvrType of this.defaultValueResolvers) {
-                let dvr = this.injector.get(dvrType);
-                let dv = dvr.resolve({ controlInfo });
-                if (dv) {
-                    control.setValue(dv.value);
-                    break;
-                }
+            // for (let dvrType of this.defaultValueResolvers) {
+            //     let dvr = this.injector.get(dvrType);
+            //     let dv = dvr.resolve({ controlInfo });
+            //     if (dv) {
+            //         control.setValue(dv.value);
+            //         break;
+            //     }
+            // }
+            if('default' in schema){
+                control.setValue(schema.default);
             }
             
             formGroup.addControl(propName, control);
@@ -136,9 +143,40 @@ export class OangEngine {
 }
 
 export interface ControlInfo<TControl extends AbstractControl> {
-    name: string;
+    name?: string;
     control: TControl;
     schema: ExtendedSchemaObject;
+    ui: UIData;
+}
+
+let uid = 0;
+export class UIData{
+    uid = `oang_field${++uid}`;
+    get label() {
+        let xtSchema: ExtendedSchemaObject = this.controlInfo.schema;
+        return xtSchema['x-displayName'] || xtSchema.title || this.controlInfo.name;
+    }
+
+    get placeholder() {
+        let xtSchema: ExtendedSchemaObject = this.controlInfo.schema;
+        return xtSchema['x-placeholder'] || xtSchema.description || this.label;
+    }
+
+    get errorMessages() {
+        let errors = this.controlInfo.control.errors;
+        let errorMessages = [];
+
+        for (let err in errors) {
+            if(errors[err] === true){
+                errorMessages.push(err);
+            }else{
+                errorMessages.push(errors[err]);
+            }
+        }
+        return errorMessages;
+    }
+
+    constructor(private controlInfo: ControlInfo<any>){}
 }
 
 export interface FormGroupInfo extends ControlInfo<FormGroup> {
