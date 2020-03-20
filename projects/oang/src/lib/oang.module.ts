@@ -59,9 +59,9 @@ export class OangModule {
     )
 
     //Default values resovlers
-    oangEngine.defaultValueResolvers.push(
+    //oangEngine.defaultValueResolvers.push(
       //FromMetadataDefaultValueResolver
-    );
+    //);
 
     //Controls resolvers
     oangEngine.controlResolvers.push(
