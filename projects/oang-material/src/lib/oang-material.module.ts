@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { OangModule } from '@cblx.br/oang';
-import { FieldTextModule } from './field-text';
+import { OangMatInputFieldModule } from './input-field';
+import { OangMatCheckboxFieldModule } from './checkbox-field';
 
 @NgModule({
   imports: [
     OangModule,
-    FieldTextModule
+    OangMatInputFieldModule
   ],
   exports:[
     OangModule,
-    FieldTextModule
+    OangMatCheckboxFieldModule,
+    OangMatInputFieldModule
   ]
 })
-export class OangMaterialModule {
-
-}
+export class OangMaterialModule {}

@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FieldTextComponent } from './field-text.component';
-import { FieldTextComponentResolver } from './field-text-component-resolver';
+import { OangMatInputFieldComponent, OangMatInputFieldComponentResolver } from './input-field.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { OangModule, OangEngine } from '@cblx.br/oang';
 
-
 @NgModule({
-  declarations: [FieldTextComponent],
+  declarations: [OangMatInputFieldComponent],
   imports: [
     CommonModule,
     MatFormFieldModule,
@@ -17,13 +15,11 @@ import { OangModule, OangEngine } from '@cblx.br/oang';
     OangModule,
     ReactiveFormsModule
   ],
-  exports: [FieldTextComponent],
-  entryComponents: [FieldTextComponent],
-  providers:[FieldTextComponentResolver]
+  exports: [OangMatInputFieldComponent],
+  providers:[OangMatInputFieldComponentResolver]
 })
-export class FieldTextModule {
+export class OangMatInputFieldModule {
   constructor(oangEngine: OangEngine){
-    //Adicionar no final
-    oangEngine.fieldComponentResolvers.push(FieldTextComponentResolver);
+    oangEngine.fieldComponentResolvers.splice(0, 0, OangMatInputFieldComponentResolver);
   }
 }

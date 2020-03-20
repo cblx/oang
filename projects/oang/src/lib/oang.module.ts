@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { OangField, FieldDefaultComponent } from './components/field.component';
+import { OangField } from './components/field.component';
 import { PortalModule } from '@angular/cdk/portal';
 import { ReactiveFormsModule } from '@angular/forms';
 import { OangEngine } from './oang-engine';
@@ -11,19 +11,35 @@ import { MaxLengthValidatorResolver } from './validator-resolvers/max-length';
 import { PatternValidatorResolver } from './validator-resolvers/pattern';
 import { MinValidatorResolver } from './validator-resolvers/min';
 import { MaxValidatorResolver } from './validator-resolvers/max';
+import { InputFieldComponent } from './components/input-field.component';
+import { InputFieldComponentResolver } from './component-resolvers/input-component-resolver';
+import { CheckboxFieldComponent } from './components/checkbox-field.component';
+import { CheckboxFieldComponentResolver } from './component-resolvers/checkbox-component-resolver';
 
 
 @NgModule({
-  declarations: [OangField, FieldDefaultComponent],
+  declarations: [
+    OangField, 
+    CheckboxFieldComponent,
+    InputFieldComponent
+  ],
   imports: [
     CommonModule,
     PortalModule,
     ReactiveFormsModule
   ],
-  exports: [OangField],
+  exports: [
+    OangField,
+    CheckboxFieldComponent,
+    InputFieldComponent
+  ],
   providers: [
     DefaultControlResolver,
     EmailValidatorResolver,
+
+    CheckboxFieldComponentResolver,
+    InputFieldComponentResolver,
+    
     IsRequiredValidatorResolver,
     MaxLengthValidatorResolver,
     MaxValidatorResolver,
@@ -53,6 +69,11 @@ export class OangModule {
     oangEngine.controlResolvers.push(
       //EnumerableToFormArrayResolver,
       DefaultControlResolver
+    );
+
+    oangEngine.fieldComponentResolvers.push(
+      CheckboxFieldComponentResolver,
+      InputFieldComponentResolver
     );
 
     //Display resolvers

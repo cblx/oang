@@ -3,4 +3,5 @@
  */
 
 export * from './lib/oang-material.module';
-export * from './lib/field-text/index';
+export * from './lib/input-field/index';
+export * from './lib/checkbox-field/index';

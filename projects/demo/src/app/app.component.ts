@@ -13,8 +13,8 @@ const schemaExample: ExtendedSchemaObject = {
   "description": "Please provide all required data",
   "properties": {
     "name": {
-      "title": "Name",
-      "description": "Type your name",
+      "x-displayName": "Name",
+      "x-placeholder": "Type your name",
       "type": "string",
       "maxLength": 64,
       "x-validationMessages": {
@@ -23,15 +23,15 @@ const schemaExample: ExtendedSchemaObject = {
       }
     },
     "document": {
-      "title": "Document",
+      "x-displayName": "Document",
       "pattern": "\\d{3}.\\d{3}",
       "x-validationMessages": {
         "pattern": "required format: 000.000"
       }
     },
     "email": {
-      "title": "Email",
-      "description": "your@email",
+      "x-displayName": "Email",
+      "x-placeholder": "your@email",
       "type": "string",
       "format": "email",
       "x-validationMessages": {
@@ -40,19 +40,19 @@ const schemaExample: ExtendedSchemaObject = {
       }
     },
     "birthday": {
-      "title": "Day of birth",
-      "description": "Type your day of birth",
+      "x-displayName": "Day of birth",
+      "x-placeholder": "Type your day of birth",
       "type": "string",
       "format": "date"
     },
     "nextAppointment": {
-      "title": "Next appointment",
-      "description": "when is your next appointment?",
+      "x-displayName": "Next appointment",
+      "x-placeholder": "when is your next appointment?",
       "type": "string",
       "format": "date-time"
     },
     "score": {
-      "title": "score",
+      "x-displayName": "Score",
       "type": "integer",
       "minimum": 0,
       "maximum": 999999,
@@ -60,6 +60,10 @@ const schemaExample: ExtendedSchemaObject = {
         "minimum": "Minimum is 0",
         "maximum": "Maximum is 999.999"
       }
+    },
+    "isActive":{
+      "x-displayName": "Active",
+      "type": "boolean"
     }
   }
 };
