@@ -125,8 +125,8 @@ export class OangEngine {
             //         break;
             //     }
             // }
-            if('default' in schema){
-                control.setValue(schema.default);
+            if('default' in propSchema){
+                control.setValue(propSchema.default);
             }
             
             formGroup.addControl(propName, control);

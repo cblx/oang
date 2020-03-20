@@ -20,11 +20,16 @@
         <div class="field" *ngFor="let kvp of formGroupInfo.controlInfos | keyvalue">
           <oang-field [controlInfo]="kvp.value"></oang-field>
         </div>
-<hr>
+        <hr>
         <!-- MATERIAL -->
-        <app-mat-example [schema]="currentSchema"></app-mat-example>
+        <app-mat-example [formGroupInfo]="formGroupInfo"></app-mat-example>
       </form>
     </div>
+  </div>
+  <div>
+    <textarea readonly>
+    {{formGroupInfo?.control.value | json}}
+  </textarea>
   </div>
 </div>
 <router-outlet></router-outlet>

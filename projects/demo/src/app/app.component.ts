@@ -94,6 +94,7 @@ export class AppComponent {
         localStorage.setItem('schema', schema);
         this.formGroupInfo = null;
         this.formGroupInfo = this.oangEngine.createForm(schemaObj);
+        this.formGroupInfo.control.valueChanges.subscribe(() => this.formGroupInfo.control.updateValueAndValidity());
         this.currentSchema = schemaObj;
       } catch (err) {
         this.err = err;

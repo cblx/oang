@@ -15,8 +15,8 @@ import { SchemaObject } from 'openapi3-ts';
   styleUrls: ['./mat-example.component.scss']
 })
 export class MatExampleComponent implements OnInit {
-  formGroupInfo: FormGroupInfo;
-  @Input() schema: SchemaObject;
+  @Input() formGroupInfo: FormGroupInfo;
+  //@Input() schema: SchemaObject;
   constructor(private oangEngine: OangEngine) {
     //oangEngine.fieldComponentResolvers.push(MyComponentResolver);
   }
@@ -25,9 +25,9 @@ export class MatExampleComponent implements OnInit {
   }
 
   ngOnChanges(changes) {
-    if (changes.schema) {
-      this.formGroupInfo = this.oangEngine.createForm(this.schema);
-    }
+    // if (changes.schema) {
+    //   this.formGroupInfo = this.oangEngine.createForm(this.schema);
+    // }
   }
 
 
