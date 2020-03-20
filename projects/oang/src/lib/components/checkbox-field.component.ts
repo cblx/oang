@@ -5,7 +5,7 @@ import { FieldComponentResolver, ComponentResolution, FieldComponentResolverCont
 @Component({
     selector: 'oang-checkbox-field',
     template: `
-        <input id="{{field.ui.uid}}" type="checkbox">
+        <input id="{{field.ui.uid}}" type="checkbox" [formControl]="field.controlInfo.control">
         <label for="{{field.ui.uid}}">{{field.ui.label}}</label>
         {{field.ui.errorMessages[0]}}
     `
