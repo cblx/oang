@@ -227,12 +227,12 @@ export interface ControlResolver {
 
 //////////////////////////////////////////
 //Default Values
-export interface DefaultValueResolverContext {
-    controlInfo: ControlInfo<any>
-}
-export interface DefaultValueResolver {
-    resolve(context?: DefaultValueResolverContext): { value: any };
-}
+// export interface DefaultValueResolverContext {
+//     controlInfo: ControlInfo<any>
+// }
+// export interface DefaultValueResolver {
+//     resolve(context?: DefaultValueResolverContext): { value: any };
+// }
 //////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////
