@@ -59,11 +59,13 @@ const schemaExample: ExtendedSchemaObject = {
       "x-validationMessages": {
         "minimum": "Minimum is 0",
         "maximum": "Maximum is 999.999"
-      }
+      },
+      "default": 0
     },
-    "isActive":{
-      "x-displayName": "Active",
-      "type": "boolean"
+    "isActive": {
+      "x-displayName": "Is Active",
+      "type": "boolean",
+      "default": false
     }
   }
 };
