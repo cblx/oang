@@ -4,6 +4,8 @@ import { OangEngine, ControlInfo } from '../oang-engine';
 import { ExtendedSchemaObject } from '../extended-schema-object';
 import { InputFieldComponent } from './input-field.component';
 
+let uid = 0;
+
 @Component({
     selector: 'oang-field',
     template: `<ng-template [cdkPortalOutlet]="componentPortal"></ng-template>`
@@ -11,6 +13,7 @@ import { InputFieldComponent } from './input-field.component';
 export class OangField {
     @Input() controlInfo: ControlInfo<any>;
     componentPortal: ComponentPortal<any>;
+    uid = `oang_field${++uid}`;
 
     get label() {
         let xtSchema: ExtendedSchemaObject = this.controlInfo.schema;

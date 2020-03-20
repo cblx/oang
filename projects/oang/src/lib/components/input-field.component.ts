@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { OangField } from './field.component';
+import { FieldComponentResolverContext, FieldComponentResolver, ComponentResolution } from '../oang-engine';
 
 @Component({
     selector: 'oang-input-field',
     template: `
-        <label>
+        <label for="{{field.uid}}">
             {{field.label}}
             <ng-container *ngIf="field.controlInfo.schema['x-isRequired']">*</ng-container>
         </label>
         <input 
+            id="{{field.uid}}"
             [type]="type"
             [placeholder]="field.placeholder" [formControl]="field.controlInfo.control"/>
         {{field.errorMessages[0]}}
@@ -40,4 +42,13 @@ export class InputFieldComponent {
         }
     }
     constructor(public field: OangField) { }
+}
+
+
+@Injectable()
+export class InputFieldComponentResolver implements FieldComponentResolver{
+    resolve(context: FieldComponentResolverContext): ComponentResolution {
+        return { type: InputFieldComponent }
+    }
+
 }

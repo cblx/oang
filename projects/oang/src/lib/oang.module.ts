@@ -11,10 +11,8 @@ import { MaxLengthValidatorResolver } from './validator-resolvers/max-length';
 import { PatternValidatorResolver } from './validator-resolvers/pattern';
 import { MinValidatorResolver } from './validator-resolvers/min';
 import { MaxValidatorResolver } from './validator-resolvers/max';
-import { InputFieldComponent } from './components/input-field.component';
-import { InputFieldComponentResolver } from './component-resolvers/input-component-resolver';
-import { CheckboxFieldComponent } from './components/checkbox-field.component';
-import { CheckboxFieldComponentResolver } from './component-resolvers/checkbox-component-resolver';
+import { InputFieldComponent, InputFieldComponentResolver } from './components/input-field.component';
+import { CheckboxFieldComponent, CheckboxFieldComponentResolver } from './components/checkbox-field.component';
 
 
 @NgModule({
