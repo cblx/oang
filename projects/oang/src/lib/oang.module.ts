@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { OangField } from './components/field.component';
+import { OangField , NoComponent } from './components/field.component';
 import { PortalModule } from '@angular/cdk/portal';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { OangEngine } from './oang-engine';
 import { DefaultControlResolver } from './control-resolvers/default';
 import { CommonModule } from '@angular/common';
@@ -13,36 +13,48 @@ import { MinValidatorResolver } from './validator-resolvers/min';
 import { MaxValidatorResolver } from './validator-resolvers/max';
 import { InputFieldComponent, InputFieldComponentResolver } from './components/input-field.component';
 import { CheckboxFieldComponent, CheckboxFieldComponentResolver } from './components/checkbox-field.component';
+import { SelectFieldComponentResolver, SelectFieldComponent } from './components/select-field.component';
+//import { NoComponent } from './components/no.component';
 
 
 @NgModule({
   declarations: [
     OangField, 
     CheckboxFieldComponent,
-    InputFieldComponent
+    InputFieldComponent,
+    NoComponent,
+    SelectFieldComponent,
   ],
   imports: [
     CommonModule,
+    FormsModule,
     PortalModule,
     ReactiveFormsModule
   ],
   exports: [
     OangField,
     CheckboxFieldComponent,
-    InputFieldComponent
+    InputFieldComponent,
+    SelectFieldComponent
   ],
   providers: [
+    // Control
     DefaultControlResolver,
-    EmailValidatorResolver,
 
+    // Components
     CheckboxFieldComponentResolver,
     InputFieldComponentResolver,
+    SelectFieldComponentResolver,
     
+    // Validatos
+    EmailValidatorResolver,
     IsRequiredValidatorResolver,
     MaxLengthValidatorResolver,
     MaxValidatorResolver,
     MinValidatorResolver,
     PatternValidatorResolver,
+
+    // The Engine
     OangEngine,
   ]
 })
@@ -71,6 +83,7 @@ export class OangModule {
 
     oangEngine.fieldComponentResolvers.push(
       CheckboxFieldComponentResolver,
+      SelectFieldComponentResolver,
       InputFieldComponentResolver
     );
 

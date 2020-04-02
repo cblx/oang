@@ -6,15 +6,15 @@ import { OangField, FieldComponentResolver, FieldComponentResolverContext, Compo
   templateUrl: './checkbox-field.component.html',
   styleUrls: ['./checkbox-field.component.css']
 })
-export class OangMatCheckboxFieldComponent {
+export class CheckboxFieldComponent {
   constructor(public field: OangField) { }
 }
 
 @Injectable()
-export class OangMatCheckboxFieldComponentResolver implements FieldComponentResolver {
+export class CheckboxFieldComponentResolver implements FieldComponentResolver {
     resolve(context: FieldComponentResolverContext): ComponentResolution {
         if (context.controlInfo.schema.type == 'boolean') {
-            return { type: OangMatCheckboxFieldComponent };
+            return { type: CheckboxFieldComponent };
         }
     }
 }

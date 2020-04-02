@@ -1,8 +1,7 @@
 import { Component, Input, Injector, ChangeDetectorRef } from '@angular/core';
 import { ComponentPortal, PortalInjector } from '@angular/cdk/portal';
 import { OangEngine, ControlInfo } from '../oang-engine';
-import { ExtendedSchemaObject } from '../extended-schema-object';
-import { InputFieldComponent } from './input-field.component';
+//import { NoComponent } from './no.component';
 
 //let uid = 0;
 
@@ -64,9 +63,18 @@ export class OangField {
     private _chooseComponent()/*: ComponentType<any>*/ {
         let resolution = this.oangEngine.getFieldComponentType(this.controlInfo) || { 
             // TODO: Change it for a default message like "No component defined"
-            type: InputFieldComponent
+            type: NoComponent
         };
         return resolution;
     }
 }
 
+@Component({
+    selector: 'oang-no-component-field',
+    template: `No component could be resolved for property schema "{{oangField.ui.label}}" on {{oangField.controlInfo.parentInfo.name}} schema.`
+})
+export class NoComponent {
+    constructor(public oangField: OangField) {
+
+    }
+}

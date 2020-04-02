@@ -9,9 +9,14 @@ import { FieldComponentResolverContext, FieldComponentResolver, ComponentResolut
             {{field.ui.label}}
             <ng-container *ngIf="field.controlInfo.schema['x-isRequired']">*</ng-container>
         </label>
-        <input 
+        <input *ngIf="type != 'number'"
             id="{{field.ui.uid}}"
             [type]="type"
+            [placeholder]="field.ui.placeholder" [formControl]="field.controlInfo.control"/>
+        <!-- When using dynamic type attribute, value number would be converted to string -->
+        <input *ngIf="type == 'number'"
+            id="{{field.ui.uid}}"
+            type="number"
             [placeholder]="field.ui.placeholder" [formControl]="field.controlInfo.control"/>
         {{field.ui.errorMessages[0]}}
     `
@@ -46,9 +51,12 @@ export class InputFieldComponent {
 
 
 @Injectable()
-export class InputFieldComponentResolver implements FieldComponentResolver{
+export class InputFieldComponentResolver implements FieldComponentResolver {
     resolve(context: FieldComponentResolverContext): ComponentResolution {
-        return { type: InputFieldComponent }
+        const type = context.controlInfo.schema.type;
+        if (type == 'string' || type == 'number' || type == 'integer') {
+            return { type: InputFieldComponent }
+        }
     }
 
 }

@@ -1,9 +1,10 @@
 import { Injectable, Injector, Type } from '@angular/core';
 import { FormBuilder, AbstractControl, ValidatorFn, Validators, FormGroup } from '@angular/forms';
 import { ExtendedSchemaObject } from './extended-schema-object';
-import { SchemaObject } from 'openapi3-ts';
+import { SchemaObject, OpenAPIObject, ComponentsObject, ReferenceObject } from 'openapi3-ts';
+//import { NoComponent } from './components/no.component';
 
-
+export type SchemaCatalog = { [key: string]: SchemaObject };
 
 @Injectable()
 export class OangEngine {
@@ -34,13 +35,17 @@ export class OangEngine {
         controlInfo.control.setValidators(Validators.compose(validators));
     }
 
-    createForm(schema: SchemaObject) : FormGroupInfo {
-        let formGroupInfo = this.createFormWithControls(schema);
-        let formGroup = formGroupInfo.control;
+    createForm<TSchemas extends SchemaCatalog>(
+        schemaCatalog: TSchemas,
+        schemaName: keyof TSchemas
+        //schema: SchemaObject, 
+    ): FormGroupInfo {
+        let formGroupInfo = this.createFormWithControls(schemaCatalog, schemaName);
+        //let formGroup = formGroupInfo.control;
 
         //Configure validators
         //for (let p in formGroup.controls) {
-            for (let p in formGroupInfo.controlInfos) {
+        for (let p in formGroupInfo.controlInfos) {
             let controlInfo = formGroupInfo.controlInfos[p];
             this.setValidators(controlInfo);
         }
@@ -48,7 +53,7 @@ export class OangEngine {
         return formGroupInfo;
     }
 
-    public getFieldComponentType(controlInfo:ControlInfo<any>) {
+    public getFieldComponentType(controlInfo: ControlInfo<any>) : ComponentResolution {
         for (let componentResolverType of this.fieldComponentResolvers) {
             let componentResolver = this.injector.get(componentResolverType);
             let componentResolution = componentResolver.resolve({ controlInfo });
@@ -56,6 +61,10 @@ export class OangEngine {
                 return componentResolution;
             }
         }
+
+        // return {
+        //     type: NoComponent
+        // }
     }
 
     // public getDisplayComponentType(metadata: DefaultModelMetadata) {
@@ -68,14 +77,21 @@ export class OangEngine {
     //     }
     // }
 
-    private createFormWithControls(schema: SchemaObject) : FormGroupInfo {
+    private createFormWithControls<TSchemas extends SchemaCatalog>(
+        schemaCatalog: TSchemas, 
+        schemaName: keyof TSchemas
+    ): FormGroupInfo {
+        let schema = schemaCatalog[schemaName];
+
         //Create form group
         let formGroup = this.formBuilder.group({});
 
         let formGroupInfo: FormGroupInfo = {
             control: formGroup,
             schema: schema,
-            name: null,
+            schemaCatalog: schemaCatalog,
+            parentInfo: null,
+            name: <string>schemaName,
             controlInfos: {},
             ui: null
         };
@@ -111,6 +127,9 @@ export class OangEngine {
                 control,
                 name: propName,
                 schema: propSchema,
+                schemaCatalog: schemaCatalog,
+                //parentSchema: schema,
+                parentInfo: formGroupInfo,
                 ui: null
             };
             controlInfo.ui = new UIData(controlInfo);
@@ -125,10 +144,10 @@ export class OangEngine {
             //         break;
             //     }
             // }
-            if('default' in propSchema){
+            if ('default' in propSchema) {
                 control.setValue(propSchema.default);
             }
-            
+
             formGroup.addControl(propName, control);
 
         }
@@ -146,11 +165,13 @@ export interface ControlInfo<TControl extends AbstractControl> {
     name?: string;
     control: TControl;
     schema: ExtendedSchemaObject;
+    schemaCatalog: SchemaCatalog;
+    parentInfo: ControlInfo<any>;
     ui: UIData;
 }
 
 let uid = 0;
-export class UIData{
+export class UIData {
     uid = `oang_field${++uid}`;
     get label() {
         let xtSchema: ExtendedSchemaObject = this.controlInfo.schema;
@@ -167,16 +188,16 @@ export class UIData{
         let errorMessages = [];
 
         for (let err in errors) {
-            if(errors[err] === true){
+            if (errors[err] === true) {
                 errorMessages.push(err);
-            }else{
+            } else {
                 errorMessages.push(errors[err]);
             }
         }
         return errorMessages;
     }
 
-    constructor(private controlInfo: ControlInfo<any>){}
+    constructor(private controlInfo: ControlInfo<any>) { }
 }
 
 export interface FormGroupInfo extends ControlInfo<FormGroup> {
@@ -186,7 +207,7 @@ export interface FormGroupInfo extends ControlInfo<FormGroup> {
 }
 
 ///////////////////////////////////
-export interface ComponentResolution{
+export interface ComponentResolution {
     type: Type<any>;
     data?: any;
 }

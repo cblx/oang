@@ -1,7 +1,10 @@
 <div class="editor">
-  <div>
+  <div class="schemas">
     <button type="button" (click)="reset()">Reset</button>
+    Schema Catalog:
     <textarea [formControl]="schemaControl" rows="10"></textarea>
+    <!-- Full schema catalog:
+    <textarea readonly [formControl]="catalogControl" rows="10"></textarea> -->
   </div>
   <div class="components">
     <div *ngIf="!formGroupInfo">
@@ -26,10 +29,13 @@
       </form>
     </div>
   </div>
-  <div>
+  <div class="result">
     <textarea readonly>
     {{formGroupInfo?.control.value | json}}
   </textarea>
   </div>
 </div>
+
+
+
 <router-outlet></router-outlet>
