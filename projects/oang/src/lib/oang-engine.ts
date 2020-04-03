@@ -54,7 +54,7 @@ export class OangEngine {
         return formGroupInfo;
     }
 
-    public getFieldComponentType(controlInfo: ControlInfo<any>) : ComponentResolution {
+    public getFieldComponentType(controlInfo: ControlInfo<any>): ComponentResolution {
         for (let componentResolverType of this.fieldComponentResolvers) {
             let componentResolver = this.injector.get(componentResolverType);
             let componentResolution = componentResolver.resolve({ controlInfo });
@@ -79,7 +79,7 @@ export class OangEngine {
     // }
 
     private createFormWithControls<TSchemas extends SchemaCatalog>(
-        schemaCatalog: TSchemas, 
+        schemaCatalog: TSchemas,
         schemaName: keyof TSchemas
     ): FormGroupInfo {
         let schema = schemaCatalog[schemaName];
@@ -185,15 +185,16 @@ export class UIData {
         return xtSchema['x-placeholder'] || xtSchema.description || this.label;
     }
 
-    get options(){
-        const enumSchema = getRefSchema(this.controlInfo);
-        if(!enumSchema){ return []; }
-        let options = enumSchema.enum.map((en, i) => ({
-            text: enumSchema['x-enum-varnames'] ? enumSchema['x-enum-varnames'][i] : en,
-            value: en
-        }));
-        return options;
-    }
+    // get options(){
+    //     const enumSchema = getRefSchema(this.controlInfo);
+    //     if(!enumSchema){ return []; }
+    //     let options = enumSchema.enum.map((en, i) => ({
+    //         text: enumSchema['x-enum-varnames'] ? enumSchema['x-enum-varnames'][i] : en,
+    //         value: en
+    //     }));
+    //     return options;
+    // }
+    options: { text: string, value: any }[];
 
     get errorMessages() {
         let errors = this.controlInfo.control.errors;
@@ -209,7 +210,17 @@ export class UIData {
         return errorMessages;
     }
 
-    constructor(private controlInfo: ControlInfo<any>) { }
+    constructor(private controlInfo: ControlInfo<any>) {
+        let refSchema = getRefSchema(controlInfo);
+
+        // References an enum
+        if (refSchema?.enum) {
+            this.options = refSchema.enum.map((en, i) => ({
+                text: refSchema['x-enum-varnames'] ? refSchema['x-enum-varnames'][i] : en,
+                value: en
+            }));
+        }
+    }
 }
 
 export interface FormGroupInfo extends ControlInfo<FormGroup> {
