@@ -22,14 +22,15 @@ import { getRefSchema } from '../oang-helpers';
     `
 })
 export class SelectFieldComponent {
-    options: { text: string, value: any }[] = [];
+    //options: { text: string, value: any }[] = [];
+    get options(){ return this.field.ui.options; }
 
     constructor(public field: OangField) {
-        const enumSchema = getRefSchema(this.field.controlInfo);
-        this.options = enumSchema.enum.map((en, i) => ({
-            text: enumSchema['x-enum-varnames'] ? enumSchema['x-enum-varnames'][i] : en,
-            value: en
-        }));
+        // const enumSchema = getRefSchema(this.field.controlInfo);
+        // this.options = enumSchema.enum.map((en, i) => ({
+        //     text: enumSchema['x-enum-varnames'] ? enumSchema['x-enum-varnames'][i] : en,
+        //     value: en
+        // }));
     }
 }
 
