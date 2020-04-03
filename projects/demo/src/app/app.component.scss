@@ -21,8 +21,10 @@
 
     .result{
         display: flex;
+        flex-flow: column;
         textarea{
             width: 100%;
+            flex-grow: 1;
         }
     }
 }

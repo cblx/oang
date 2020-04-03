@@ -7,12 +7,12 @@
     <textarea readonly [formControl]="catalogControl" rows="10"></textarea> -->
   </div>
   <div class="components">
-    <div *ngIf="!formGroupInfo">
+    <div *ngIf="err">
       Could not construct form data<br>
       <hr>
       {{err}}
     </div>
-    <div *ngIf="formGroupInfo">
+    <div *ngIf="formGroupInfo && !err">
       <form (ngSubmit)="submit()" [formGroup]="formGroupInfo.control">
         <button type="submit">Send</button>
         <h1>{{formGroupInfo.schema.title}}</h1>
@@ -30,6 +30,9 @@
     </div>
   </div>
   <div class="result">
+    <div>
+      <h1>Form Value</h1>
+    </div>
     <textarea readonly>
     {{formGroupInfo?.control.value | json}}
   </textarea>

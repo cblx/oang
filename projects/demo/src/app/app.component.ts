@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { OangEngine, FormGroupInfo } from 'projects/oang/src/lib/oang-engine';
-import { ExtendedSchemaObject } from 'projects/oang/src/lib/extended-schema-object';
 import { MatExampleComponent } from './material/mat-example/mat-example.component';
 
 // const schemaExample: ExtendedSchemaObject = {
@@ -87,7 +86,9 @@ const schemaExample = {
       "country": {
         "x-displayName": "Country",
         "x-placeholder": "Select you country...",
-        "$ref": "#/components/schemas/Countries"
+        "allOf": [{
+          "$ref": "#/components/schemas/Countries"
+        }]
       },
       "name": {
         "x-displayName": "Name",
@@ -101,7 +102,7 @@ const schemaExample = {
       },
       "document": {
         "x-displayName": "Document",
-        "pattern": "\\d{3}.\\d{3}",
+        "pattern": "\\d{3}\\.\\d{3}",
         "type": "string",
         "x-validationMessages": {
           "pattern": "required format: 000.000"
@@ -188,6 +189,7 @@ export class AppComponent {
   ngOnInit() {
     this.schemaControl.valueChanges.subscribe(schema => {
       try {
+        this.err = null;
         const schemaObj = JSON.parse(schema);
         localStorage.setItem('schema', schema);
         this.formGroupInfo = null;

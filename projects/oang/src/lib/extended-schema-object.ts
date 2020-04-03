@@ -5,5 +5,5 @@ export interface ExtendedSchemaObject extends SchemaObject {
     'x-placeholder'?:string;
     'x-validationMessages'?: { [key: string]: string };
     'x-enum-varnames'?: string[];
-    '$ref'?: string;
+    //'$ref'?: string;
 }

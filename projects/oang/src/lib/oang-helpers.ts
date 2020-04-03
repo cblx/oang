@@ -8,6 +8,13 @@ export function getSchemaFromCatalog(schemaCatalog: SchemaCatalog, schemaNameOrR
     return schemaCatalog[schemaNameOrRef];
 }
 
+
+/**
+ * Find ref schema for a control.
+ * Searches on $ref field or first ocurrence in allOf
+ * @param controlInfo 
+ */
 export function getRefSchema(controlInfo: ControlInfo<any>) : ExtendedSchemaObject {
-    return getSchemaFromCatalog(controlInfo?.schemaCatalog, controlInfo?.schema?.$ref);
+    let ref = controlInfo?.schema?.$ref || controlInfo?.schema?.allOf?.find(() => true)?.$ref;
+    return getSchemaFromCatalog(controlInfo?.schemaCatalog, ref);
 }
