@@ -6,3 +6,27 @@ https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.3.md#schem
 Demo:
 
 https://cblxoang.z15.web.core.windows.net/
+
+## Usage
+
+Installing
+
+`
+npm install cblx.br/oang --save-dev
+`
+
+Import OangModule
+
+```
+import { OangMaterialModule } from '@cblx.br/oang';
+
+
+@NgModule({
+  imports: [
+    OangModule,
+  ]
+})
+export class MyModule { }
+```
+
+
