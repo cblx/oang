@@ -24,7 +24,9 @@ import { FieldComponentResolverContext, FieldComponentResolver, ComponentResolut
 export class InputFieldComponent {
     get type() {
         switch (this.field.controlInfo?.schema?.type) {
+            // generic numbers and integers
             case 'integer':
+            case 'number':
                 switch (this.field.controlInfo?.schema?.format) {
                     default: return "number";
                 }
