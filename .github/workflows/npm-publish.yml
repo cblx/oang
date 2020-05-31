@@ -19,6 +19,8 @@ jobs:
       - run: npx ng build --project oang --prod
       - run: npx ng build --project oang-material --prod
       - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}  
 
 #   publish-npm:
 #     needs: build
