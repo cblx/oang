@@ -18,9 +18,16 @@ jobs:
       - run: npm ci
       - run: npx ng build --project oang --prod
       - run: npx ng build --project oang-material --prod
+        
       - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}  
+        working-directory: dist/oang
+        env: 
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          
+      - run: npm publish
+        working-directory: dist/oang-material
+        env: 
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
 #   publish-npm:
 #     needs: build
