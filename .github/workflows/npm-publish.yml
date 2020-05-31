@@ -26,6 +26,10 @@ jobs:
       - run: npm version $RELEASE_VERSION --no-git-tag-version
         working-directory: dist/oang-material
       
+      - run: (Get-Content ./package.json) | ForEach-Object { $_ -replace "0.0.0-PLACEHOLDER", $env:RELEASE_VERSION} | Set-Content ./package.json
+        working-directory: dist/oang-material
+        shell: pwsh
+      
       # PUBLISH  
       - run: npm publish
         working-directory: dist/oang
