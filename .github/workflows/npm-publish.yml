@@ -22,12 +22,12 @@ jobs:
       - run: npm publish
         working-directory: dist/oang
         env: 
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
           
       - run: npm publish
         working-directory: dist/oang-material
         env: 
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
 #   publish-npm:
 #     needs: build
