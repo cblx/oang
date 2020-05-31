@@ -1,7 +1,8 @@
 name: Publish demo
 
 on:
-  label: demo
+  push:
+    branches: [ demo ]
 
 jobs:
   
