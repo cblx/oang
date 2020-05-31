@@ -26,16 +26,16 @@ jobs:
       - run: npm version $RELEASE_VERSION --no-git-tag-version
         working-directory: dist/oang-material
       
-        
-#       - run: npm publish
-#         working-directory: dist/oang
-#         env: 
-#           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      # PUBLISH  
+      - run: npm publish
+        working-directory: dist/oang
+        env: 
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
           
-#       - run: npm publish
-#         working-directory: dist/oang-material
-#         env: 
-#           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - run: npm publish
+        working-directory: dist/oang-material
+        env: 
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
 #   publish-npm:
 #     needs: build
