@@ -19,16 +19,22 @@ jobs:
       - run: npm ci
       - run: npx ng build --project oang --prod
       - run: npx ng build --project oang-material --prod
-        
-      - run: npm publish
+      - run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
+      - run: npm version $RELEASE_VERSION --no-git-tag-version
         working-directory: dist/oang
-        env: 
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-          
-      - run: npm publish
+      - run: npm version $RELEASE_VERSION --no-git-tag-version
         working-directory: dist/oang-material
-        env: 
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      
+        
+#       - run: npm publish
+#         working-directory: dist/oang
+#         env: 
+#           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          
+#       - run: npm publish
+#         working-directory: dist/oang-material
+#         env: 
+#           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
 #   publish-npm:
 #     needs: build
