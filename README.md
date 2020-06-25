@@ -9,7 +9,7 @@ https://cblxoang.z15.web.core.windows.net/
 
 This library has 2 capabilities:
 
-1. Creates an enriched FormGroup structure 
+1. Creates a FormGroup from an OpenApi schema with validations, default values and UI extra information.
 
 2. Provides a component that will resolve specific components based on the schema
 
