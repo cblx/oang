@@ -14,6 +14,7 @@ import { MaxValidatorResolver } from './validator-resolvers/max';
 import { InputFieldComponent, InputFieldComponentResolver } from './components/input-field.component';
 import { CheckboxFieldComponent, CheckboxFieldComponentResolver } from './components/checkbox-field.component';
 import { SelectFieldComponentResolver, SelectFieldComponent } from './components/select-field.component';
+import { FormArrayResolver } from './control-resolvers/form-array';
 //import { NoComponent } from './components/no.component';
 
 
@@ -40,6 +41,7 @@ import { SelectFieldComponentResolver, SelectFieldComponent } from './components
   providers: [
     // Control
     DefaultControlResolver,
+    FormArrayResolver,
 
     // Components
     CheckboxFieldComponentResolver,
@@ -77,7 +79,7 @@ export class OangModule {
 
     //Controls resolvers
     oangEngine.controlResolvers.push(
-      //EnumerableToFormArrayResolver,
+      FormArrayResolver,
       DefaultControlResolver
     );
 
