@@ -7,6 +7,12 @@ Demo:
 
 https://cblxoang.z15.web.core.windows.net/
 
+This library has 2 capabilities:
+
+1. Creates an enriched FormGroup structure 
+
+2. Provides a component that will resolve specific components based on the schema
+
 ## Usage
 
 Installing
@@ -29,6 +35,9 @@ import { OangMaterialModule } from '@cblx.br/oang';
 export class MyModule { }
 ```
 
+
+
+
 ## Creating FormGroups from OpenApi schemas
 
 ```
@@ -39,4 +48,7 @@ constructor(oangEngine: OangEngine){
    const formGroupInfo = oangEngine.createForm(schemaCatalog /* the schema dictionary */, 'MyRequestDto' /* component name */);
 }
 ...
+```
+
+
 
