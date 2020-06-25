@@ -173,7 +173,7 @@ export interface ControlInfo<TControl extends AbstractControl> {
 
 let uid = 0;
 export class UIData {
-    uid = `oang_field${++uid}`;
+    uid = `oang_form_control_${++uid}`;
 
     get label() {
         let xtSchema: ExtendedSchemaObject = this.controlInfo.schema;
