@@ -44,9 +44,17 @@ import { OangEngine } from '@cblx.br/oang';
 class MyComponent{
    formGroupInfo: FormGroupInfo;
    constructor(oangEngine: OangEngine){
-   this.formGroupInfo = oangEngine.createForm(schemaCatalog /* the schema dictionary */, 'MyRequestDto' /* component name */);
+   this.formGroupInfo = oangEngine.createForm(schemaCatalog /* the schema dictionary */, 'MyRequestDto' /* the schema object name */);
 }
 ```
+
+The formGroupInfo has the following fields of interest:
+
+- control: FormGroup
+- controlInfos:  { [key:string]: ControlInfo }
+
+A ControlInfo will be created for each property of the schema object
+
 
 
 
