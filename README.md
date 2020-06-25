@@ -29,4 +29,14 @@ import { OangMaterialModule } from '@cblx.br/oang';
 export class MyModule { }
 ```
 
+## Creating FormGroups from OpenApi schemas
+
+```
+import { OangEngine } from '@cblx.br/oang';
+
+...
+constructor(oangEngine: OangEngine){
+   const formGroupInfo = oangEngine.createForm(schemaCatalog /* the schema dictionary */, 'MyRequestDto' /* component name */);
+}
+...
 
