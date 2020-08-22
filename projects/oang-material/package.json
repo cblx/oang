@@ -6,7 +6,9 @@
     "@angular/core": "^9.0.6",
     "@angular/cdk": "^9.1.2",
     "@angular/material": "^9.1.2",
-    "@cblx.br/oang": "0.0.0-PLACEHOLDER",
-    "tslib": "^1.10.0"
+    "@cblx.br/oang": "0.0.0-PLACEHOLDER"
+},
+  "dependencies": {
+    "tslib": "^2.0.0"
   }
 }
