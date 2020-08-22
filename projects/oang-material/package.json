@@ -2,10 +2,10 @@
   "name": "@cblx.br/oang-material",
   "version": "0.0.0-dev.0",
   "peerDependencies": {
-    "@angular/common": "^9.0.6",
-    "@angular/core": "^9.0.6",
-    "@angular/cdk": "^9.1.2",
-    "@angular/material": "^9.1.2",
+    "@angular/common": ">=9.0.6",
+    "@angular/core": ">=9.0.6",
+    "@angular/cdk": ">=9.1.2",
+    "@angular/material": ">=9.1.2",
     "@cblx.br/oang": "0.0.0-PLACEHOLDER"
 },
   "dependencies": {
