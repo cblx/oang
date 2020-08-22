@@ -1,7 +1,7 @@
 import { Injectable, Injector, Type } from '@angular/core';
 import { FormBuilder, AbstractControl, ValidatorFn, Validators, FormGroup } from '@angular/forms';
 import { ExtendedSchemaObject } from './extended-schema-object';
-import { SchemaObject, OpenAPIObject, ComponentsObject, ReferenceObject } from 'openapi3-ts';
+import { SchemaObject } from 'openapi3-ts';
 import { getRefSchema } from './oang-helpers';
 //import { NoComponent } from './components/no.component';
 
@@ -10,10 +10,8 @@ export type SchemaCatalog = { [key: string]: SchemaObject };
 @Injectable()
 export class OangEngine {
     controlResolvers: (Type<ControlResolver> | ControlResolverFn)[] = [];
-    //defaultValueResolvers: Type<DefaultValueResolver>[] = [];
     validatorsResolvers: Type<ValidatorResolver>[] = [];
     fieldComponentResolvers: Type<FieldComponentResolver>[] = [];
-    //displayComponentResolvers: Type<DisplayComponentResolver>[] = [];
 
     constructor(
         private formBuilder: FormBuilder,
@@ -184,16 +182,7 @@ export class UIData {
         let xtSchema: ExtendedSchemaObject = this.controlInfo.schema;
         return xtSchema['x-placeholder'] || xtSchema.description || this.label;
     }
-
-    // get options(){
-    //     const enumSchema = getRefSchema(this.controlInfo);
-    //     if(!enumSchema){ return []; }
-    //     let options = enumSchema.enum.map((en, i) => ({
-    //         text: enumSchema['x-enum-varnames'] ? enumSchema['x-enum-varnames'][i] : en,
-    //         value: en
-    //     }));
-    //     return options;
-    // }
+ 
     options: { text: string, value: any }[];
 
     get errorMessages() {
@@ -267,17 +256,6 @@ export interface ControlResolver {
     resolve(context: ControlResolverContext): AbstractControl;
 }
 ///////////////////////////////////////////////////////////////
-
-
-//////////////////////////////////////////
-//Default Values
-// export interface DefaultValueResolverContext {
-//     controlInfo: ControlInfo<any>
-// }
-// export interface DefaultValueResolver {
-//     resolve(context?: DefaultValueResolverContext): { value: any };
-// }
-//////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////
 //Validators

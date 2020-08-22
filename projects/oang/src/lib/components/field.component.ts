@@ -7,7 +7,10 @@ import { OangEngine, ControlInfo } from '../oang-engine';
 
 @Component({
     selector: 'oang-field',
-    template: `<ng-template [cdkPortalOutlet]="componentPortal"></ng-template>`
+    template: `<ng-template [cdkPortalOutlet]="componentPortal"></ng-template>`,
+    styles:[
+        ':host{ display: inline-block }'
+    ]
 })
 export class OangField {
     @Input() controlInfo: ControlInfo<any>;
