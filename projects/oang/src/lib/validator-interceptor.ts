@@ -16,7 +16,7 @@ export abstract class ValidatorInterceptor {
 
 @Injectable()
 export class DefaultValidatorInterceptor extends ValidatorInterceptor {
-    private supported = ['en'/*, 'pt'*/];
+    private supported = ['en', 'pt'];
     private translations
         : { [lang: string]: { [kind: string]: (context: ValidatorResolverContext) => string } }
         = {
