@@ -6,7 +6,7 @@ import { ControlResolver, ControlResolverContext } from '../oang-engine';
 export class FormArrayResolver implements ControlResolver {
     constructor(private formBuilder: FormBuilder) { }
     resolve(context: ControlResolverContext) {
-        if (context.schema.type == 'array' && context.schema.items.$ref) {
+        if (context.schema?.type == 'array' && context.schema.items.$ref) {
             return this.formBuilder.array([]);
         }
     }

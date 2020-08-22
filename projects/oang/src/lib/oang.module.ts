@@ -15,6 +15,7 @@ import { InputFieldComponent, InputFieldComponentResolver } from './components/i
 import { CheckboxFieldComponent, CheckboxFieldComponentResolver } from './components/checkbox-field.component';
 import { SelectFieldComponentResolver, SelectFieldComponent } from './components/select-field.component';
 import { FormArrayResolver } from './control-resolvers/form-array';
+import { ValidatorInterceptor, DefaultValidatorInterceptor } from './validator-interceptor';
 //import { NoComponent } from './components/no.component';
 
 
@@ -58,6 +59,11 @@ import { FormArrayResolver } from './control-resolvers/form-array';
 
     // The Engine
     OangEngine,
+
+    {
+      provide: ValidatorInterceptor,
+      useClass: DefaultValidatorInterceptor
+    }
   ]
 })
 export class OangModule {

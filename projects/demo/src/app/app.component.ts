@@ -73,6 +73,100 @@ import { MatExampleComponent } from './material/mat-example/mat-example.componen
 //   }
 // };
 
+// const schemaExample = {
+//   "EditorModel": {
+//     "required": [
+//       "name",
+//       "email",
+//       "country"
+//     ],
+//     "title": "Edit Profiles",
+//     "description": "Please provide all required data",
+//     "properties": {
+//       "country": {
+//         "x-displayName": "Country",
+//         "x-placeholder": "Select you country...",
+//         "allOf": [{
+//           "$ref": "#/components/schemas/Countries"
+//         }]
+//       },
+//       "name": {
+//         "x-displayName": "Name",
+//         "x-placeholder": "Type your name",
+//         "type": "string",
+//         "maxLength": 64,
+//         "x-validationMessages": {
+//           "required": "This field is required",
+//           "maxLength": "The max length is 64"
+//         }
+//       },
+//       "document": {
+//         "x-displayName": "Document",
+//         "pattern": "\\d{3}\\.\\d{3}",
+//         "type": "string",
+//         "x-validationMessages": {
+//           "pattern": "required format: 000.000"
+//         }
+//       },
+//       "email": {
+//         "x-displayName": "Email",
+//         "x-placeholder": "your@email",
+//         "type": "string",
+//         "format": "email",
+//         "x-validationMessages": {
+//           "required": "This field is required",
+//           "email": "invalid email"
+//         }
+//       },
+//       "birthday": {
+//         "x-displayName": "Day of birth",
+//         "x-placeholder": "Type your day of birth",
+//         "type": "string",
+//         "format": "date"
+//       },
+//       "nextAppointment": {
+//         "x-displayName": "Next appointment",
+//         "x-placeholder": "when is your next appointment?",
+//         "type": "string",
+//         "format": "date-time"
+//       },
+//       "score": {
+//         "x-displayName": "Score",
+//         "type": "integer",
+//         "minimum": 0,
+//         "maximum": 999999,
+//         "x-validationMessages": {
+//           "minimum": "Minimum is 0",
+//           "maximum": "Maximum is 999.999"
+//         },
+//         "default": 0
+//       },
+//       "isActive": {
+//         "x-displayName": "Is Active",
+//         "type": "boolean",
+//         "default": false
+//       },
+//       "AboutMe": {
+//         "type": "your-custom-type"
+//       }
+//     }
+//   },
+//   "Countries": {
+//     "enum": [
+//       1,
+//       2,
+//       3
+//     ],
+//     "type": "integer",
+//     "format": "int32",
+//     "x-enum-varnames": [
+//       "Brazil",
+//       "USA",
+//       "China"
+//     ]
+//   }
+// };
+
 const schemaExample = {
   "EditorModel": {
     "required": [
@@ -94,29 +188,18 @@ const schemaExample = {
         "x-displayName": "Name",
         "x-placeholder": "Type your name",
         "type": "string",
-        "maxLength": 64,
-        "x-validationMessages": {
-          "required": "This field is required",
-          "maxLength": "The max length is 64"
-        }
+        "maxLength": 64
       },
       "document": {
         "x-displayName": "Document",
         "pattern": "\\d{3}\\.\\d{3}",
-        "type": "string",
-        "x-validationMessages": {
-          "pattern": "required format: 000.000"
-        }
+        "type": "string"
       },
       "email": {
         "x-displayName": "Email",
         "x-placeholder": "your@email",
         "type": "string",
-        "format": "email",
-        "x-validationMessages": {
-          "required": "This field is required",
-          "email": "invalid email"
-        }
+        "format": "email"
       },
       "birthday": {
         "x-displayName": "Day of birth",
@@ -135,10 +218,6 @@ const schemaExample = {
         "type": "integer",
         "minimum": 0,
         "maximum": 999999,
-        "x-validationMessages": {
-          "minimum": "Minimum is 0",
-          "maximum": "Maximum is 999.999"
-        },
         "default": 0
       },
       "isActive": {
@@ -198,6 +277,7 @@ export class AppComponent {
         this.currentSchema = schemaObj;
       } catch (err) {
         this.err = err;
+        throw err;
       }
     });
     let memory = localStorage.getItem('schema');

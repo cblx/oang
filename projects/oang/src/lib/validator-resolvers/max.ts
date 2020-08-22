@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { ValidatorFn, Validators } from '@angular/forms';
 import { ValidatorResolver, ValidatorResolverContext } from '../oang-engine';
-import { wrapFn } from './helpers';
+import { ValidatorInterceptor } from '../validator-interceptor';
 
 @Injectable()
 export class MaxValidatorResolver implements ValidatorResolver {
-    constructor() { }
+    constructor(private interceptor: ValidatorInterceptor) { }
     resolve(context: ValidatorResolverContext): ValidatorFn {
         let maximum = context.controlInfo.schema.maximum;
         if (maximum || maximum === 0) {
-            return wrapFn(context.controlInfo.schema, Validators.max(maximum), 'maximum');
+            return this.interceptor.intercept('maximum', Validators.max(maximum), context);
         }
     }
 }
